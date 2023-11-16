@@ -25,3 +25,6 @@ dist-ssr
 
 # Project tracking files
 projectInfo.md
+
+# Secrets
+src/secrets
