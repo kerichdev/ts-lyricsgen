@@ -1,6 +1,6 @@
 export interface Lyrics {
+  lyrics: string;
   title: string;
   artist: string;
-  lyrics: string;
-  source: string;
+  image: string;
 }
