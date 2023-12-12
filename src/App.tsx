@@ -1,20 +1,17 @@
 import {
-  Avatar,
   Button,
-  Select,
   TextField,
-  Chip,
   List,
   ListItem,
   ListItemText,
-  Tooltip,
   Alert,
   Snackbar,
   Skeleton
 } from "@mui/material"
 import { useQuery } from "react-query";
 import searchQuery from "./api/searchQuery";
-import React, { useState, useEffect, ReactNode } from 'react';
+import lyristQuery from "./api/fetchLyrics";
+import React, { useState, useEffect } from 'react';
 import './App.css'
 
 function App() {
