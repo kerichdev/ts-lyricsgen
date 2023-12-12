@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Button,
   Select,
   TextField,
@@ -11,7 +12,6 @@ import {
   Snackbar,
   Skeleton
 } from "@mui/material"
-import MuiAlert from "@mui/material/Alert"
 import { useQuery } from "react-query";
 import searchQuery from "./api/searchQuery";
 import React, { useState, useEffect, ReactNode } from 'react';
@@ -62,9 +62,9 @@ function App() {
       )}
       {isError && (
         <Snackbar open={isSnackbarOpen} autoHideDuration={5000} onClose={() => setIsSnackbarOpen(false)}>
-          <MuiAlert onClose={() => setIsSnackbarOpen(false)} severity="error" sx={{ width: '100%' }}>
+          <Alert onClose={() => setIsSnackbarOpen(false)} severity="error" sx={{ width: '100%' }}>
             {String(error)}
-          </MuiAlert>
+          </Alert>
         </Snackbar>
       )}
       {data && (
