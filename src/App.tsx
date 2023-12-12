@@ -8,14 +8,10 @@ import {
   ListItemText,
   Tooltip,
   Alert,
-  Snackbar
+  Snackbar,
+  Skeleton
 } from "@mui/material"
-//
-import {
-  Box,
-  Container,
-  Stack
-} from "@mui/material"
+import muiAlert from "@mui/material/Alert"
 import { useQuery } from "react-query";
 import searchQuery from "./api/searchQuery";
 import React, { useState, useEffect, ReactNode } from 'react';
