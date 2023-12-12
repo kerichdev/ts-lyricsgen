@@ -7,16 +7,18 @@ import {
   Alert,
   Snackbar,
   Skeleton
-} from "@mui/material"
+} from "@mui/material";
 import { useQuery } from "react-query";
 import React, { useState, useEffect } from 'react';
 import searchQuery from "../api/searchQuery";
-import "../App.css"
+import "../App.css";
+
+import handleLyricsQueryChange from "./DisplayLyrics";
 
 export default function SearchTrack() {
   const [searchText, setSearchText] = useState("");
   const { isLoading, data, isError, error, refetch } = useQuery(['search', searchText], () => searchQuery(searchText), {
-  enabled: false, // dont query automatically
+    enabled: false, // dont query automatically
   });
 
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
@@ -67,6 +69,8 @@ export default function SearchTrack() {
             <ListItem 
               key={`${track.name}-${track.artist}`}
               className="listItem"
+              onMouseEnter={() => handleLyricsQueryChange(track.name, track.artist)}
+              onClick={handleLyricsQuery}
             >
               <ListItemText
                 primary={track.name}
