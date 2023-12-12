@@ -68,7 +68,7 @@ export default function SearchTrack() {
               key={`${track.name}-${track.artist}`}
               className="listItem"
               //onMouseEnter={() => handleLyricsQueryChange(track.name, track.artist)}
-              onClick={handleLyricsQuery}
+              //onClick={handleLyricsQuery}
             >
               <ListItemText
                 primary={track.name}
