@@ -4,6 +4,8 @@ import {
   TextField,
   Chip,
   List,
+  ListItem,
+  ListItemText,
   Tooltip,
   Alert,
   Snackbar
@@ -49,7 +51,18 @@ function App() {
       <Button onClick={handleSearch}>Search</Button>
       {isLoading && <p>Loading...</p>}
       {isError && <p>Error: {String(error)}</p>}
-      {data && <pre>{JSON.stringify(data, null, 2)}</pre>}
+      {data && (
+        <List>
+          {data.data.results.trackmatches.track.map((track) => (
+            <ListItem key={`${track.name}-${track.artist}`}>
+              <ListItemText
+                primary={track.name}
+                secondary={`Artist: ${track.artist}`}
+              />
+            </ListItem>
+          ))}
+        </List>
+      )}
     </>
   )
 }
