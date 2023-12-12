@@ -11,7 +11,7 @@ import {
   Snackbar,
   Skeleton
 } from "@mui/material"
-import muiAlert from "@mui/material/Alert"
+import MuiAlert from "@mui/material/Alert"
 import { useQuery } from "react-query";
 import searchQuery from "./api/searchQuery";
 import React, { useState, useEffect, ReactNode } from 'react';
@@ -22,6 +22,12 @@ function App() {
   const { isLoading, data, isError, error, refetch } = useQuery(['search', searchText], () => searchQuery(searchText), {
     enabled: false, // dont query automatically
   });
+
+  const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
+
+  useEffect(() => {
+    setIsSnackbarOpen(isError);
+  }, [isError]);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(event.target.value);
@@ -34,6 +40,8 @@ function App() {
       console.error(error);
     }
   };
+
+  console.log('isSnackbarOpen:', isSnackbarOpen);
 
   return (
     <>
@@ -54,7 +62,13 @@ function App() {
           ))}
         </List>
       )}
-      {isError && <p>Error: {String(error)}</p>}
+      {isError && (
+        <Snackbar open={isSnackbarOpen} autoHideDuration={5000} onClose={() => setIsSnackbarOpen(false)}>
+          <MuiAlert onClose={() => setIsSnackbarOpen(false)} severity="error" sx={{ width: '100%' }}>
+            {String(error)}
+          </MuiAlert>
+        </Snackbar>
+      )}
       {data && (
         <List>
           {data.data.results.trackmatches.track.map((track) => (
