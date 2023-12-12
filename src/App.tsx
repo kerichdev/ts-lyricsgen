@@ -54,7 +54,7 @@ function App() {
       {data && (
         <List>
           {data.data.results.trackmatches.track.map((track) => (
-            <ListItem key={`${track.name}-${track.artist}`}>
+            <ListItem key={`${track.name}-${track.artist}`} className="listItem">
               <ListItemText
                 primary={track.name}
                 secondary={`Artist: ${track.artist}`}
