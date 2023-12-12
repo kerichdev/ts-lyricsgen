@@ -41,8 +41,6 @@ function App() {
     }
   };
 
-  console.log('isSnackbarOpen:', isSnackbarOpen);
-
   return (
     <>
       <h1> Well... this is awkward. </h1>
