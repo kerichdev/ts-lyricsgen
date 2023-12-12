@@ -13,7 +13,7 @@ import {
   Box,
   Container,
   Stack
-} from "@mui/system"
+} from "@mui/material"
 //
 import { useQuery } from "react-query";
 import searchQuery from "./api/searchQuery";
@@ -40,7 +40,14 @@ function App() {
 
   return (
     <>
-
+      <h1> Well... this is awkward. </h1>
+      <p> Search for your song below: </p>
+      <TextField 
+        fullWidth 
+        id="search-field" 
+        label="Search" 
+        variant="filled"
+      />
     </>
   )
 }
