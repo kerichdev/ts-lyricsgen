@@ -45,7 +45,15 @@ function App() {
         onChange={handleSearchChange}
       />
       <Button onClick={handleSearch}>Search</Button>
-      {isLoading && <p>Loading...</p>}
+      {isLoading && (
+        <List>
+          {Array.from({ length: 5 }).map((_, index) => (
+            <ListItem key={index}>
+              <Skeleton variant="rectangular" width="100%" height={60} animation="wave" />
+            </ListItem>
+          ))}
+        </List>
+      )}
       {isError && <p>Error: {String(error)}</p>}
       {data && (
         <List>
