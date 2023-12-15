@@ -10,12 +10,13 @@ import { useQuery } from "react-query";
 import React, { useState, useEffect } from 'react';
 import lyricsQuery from "../api/fetchLyrics";
 import "../App.css"
+import { useLyricStore } from "../store";
 
 export default function DisplayLyrics() {
-  const [track, setTitle] = useState("");
-  const [artist, setArtist] = useState("");
-  const { isLoading, data, isError, error, refetch } = useQuery(['lyrics', track, artist], () => lyricsQuery(track, artist), {
-    enabled: false,
+  const { title, artist } = useLyricStore((state) => state);
+
+  const { isLoading, data, isError, error } = useQuery(['lyrics', title, artist], () => lyricsQuery(title, artist), {
+    enabled: true,
   });
 
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
@@ -24,17 +25,7 @@ export default function DisplayLyrics() {
     setIsSnackbarOpen(isError);
   }, [isError]);
 
-  const handleLyricsQueryChange = (track: string, artist: string) => {
-    setTitle(track);
-    setArtist(artist);
-  };
-  const handleLyricsQuery = async () => {
-    try {
-      await refetch();
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  console.log(title, artist);
 
   return (
     <>
