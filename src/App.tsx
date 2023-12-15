@@ -12,6 +12,7 @@ import { useQuery } from "react-query";
 import React, { useState, useEffect } from 'react';
 import SearchTrack from "./components/SearchTrack";
 import './App.css'
+import DisplayLyrics from "./components/DisplayLyrics";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <h1> Well... this is awkward. </h1>
       <p> Search for your song below: </p>
       <SearchTrack />
+      <DisplayLyrics />
     </>
   )
 }
