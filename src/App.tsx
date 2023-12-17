@@ -19,8 +19,10 @@ function App() {
     <>
       <h1> Well... this is awkward. </h1>
       <p> Search for your song below: </p>
-      <SearchTrack />
-      <DisplayLyrics />
+      <div className="displayClass">
+        <SearchTrack />
+        <DisplayLyrics />
+      </div>
     </>
   )
 }
