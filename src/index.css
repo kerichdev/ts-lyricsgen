@@ -43,3 +43,30 @@ body {
     background-color: #f9f9f9;
   }
 }
+
+.displayClass, .displayClassLyricsBox {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.lyricsBox {
+  text-align: start;
+  background-color: red;
+  border-radius: 20px;
+  border: 40px red solid;
+}
+
+.lyricsTitle, .lyricsArtist {
+  text-align: start;
+}
+
+.albumCover {
+  width: 50px;
+}
