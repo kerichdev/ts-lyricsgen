@@ -41,7 +41,7 @@ export default function SearchTrack() {
   };
 
   return (
-    <>
+    <div className="column">
       <TextField
         label="Enter your search query"
         value={searchText}
@@ -84,6 +84,6 @@ export default function SearchTrack() {
           ))}
         </List>
       )}
-    </>
+    </div>
   )
 }
