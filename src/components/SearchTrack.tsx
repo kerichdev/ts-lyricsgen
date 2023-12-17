@@ -9,16 +9,23 @@ import {
   Skeleton
 } from "@mui/material";
 import { useQuery } from "react-query";
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import searchQuery from "../api/searchQuery";
 import "../App.css";
 import { useLyricStore } from "../store";
 
 export default function SearchTrack() {
-  const [searchText, setSearchText] = useState("");
   const { isLoading, data, isError, error, refetch } = useQuery(['search', searchText], () => searchQuery(searchText), {
     enabled: false, // dont query automatically
   });
+
+  let searchText = "";
+
+  const searchRef = useRef<HTMLInputElement | null>(null);
+  useEffect(() => {
+      searchText = searchRef!.current?.value;
+  }, [searchRef!.current?.value]);
+  
 
   const { setTitle, setArtist } = useLyricStore((state) => state);
 
@@ -27,10 +34,6 @@ export default function SearchTrack() {
   useEffect(() => {
       setIsSnackbarOpen(isError);
   }, [isError]);
-
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchText(event.target.value);
-  };
 
   const handleSearch = async () => {
     try {
@@ -45,7 +48,7 @@ export default function SearchTrack() {
       <TextField
         label="Enter your search query"
         value={searchText}
-        onChange={handleSearchChange}
+        inputRef={searchRef}
       />
       <Button onClick={handleSearch}>Search</Button>
       {isLoading && (
