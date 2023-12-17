@@ -39,7 +39,31 @@ export default function DisplayLyrics() {
           </Alert>
         </Snackbar>
       )}
-      {data && <p>{data.data.lyrics}</p>}
+      <div className="column">
+        <div className="lyricsBox">
+          <div className="displayClassLyricsBox">
+          <div className="column">
+            <img src={data?.data.cover_image} alt="album cover" className="albumCover" />
+          </div>
+          <div className="column">
+            <p className="lyricsTitle">
+              {title}
+            </p>
+            <p className="lyricsArtist">
+              {artist}
+            </p>
+          </div>
+          </div>
+          {data && data.data.lyrics.split('\n').map((line, index) => (
+            <p 
+              key={index}
+              className="lyricsLine"
+            >
+              {line}
+            </p>
+          ))}
+        </div>
+      </div>
     </>
   )
 }
