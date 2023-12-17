@@ -15,15 +15,16 @@ import "../App.css";
 import { useLyricStore } from "../store";
 
 export default function SearchTrack() {
+  let searchText = "";
   const { isLoading, data, isError, error, refetch } = useQuery(['search', searchText], () => searchQuery(searchText), {
     enabled: false, // dont query automatically
   });
 
-  let searchText = "";
-
   const searchRef = useRef<HTMLInputElement | null>(null);
   useEffect(() => {
+    if (searchRef!.current?.value !== undefined) {
       searchText = searchRef!.current?.value;
+    }
   }, [searchRef!.current?.value]);
   
 
