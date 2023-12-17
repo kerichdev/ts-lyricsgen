@@ -1,13 +1,10 @@
-// will probably have to rewrite this ground up? or not
-// this is ONLY responsible for displaying lyrics and not choosing them
-
 import {
   Snackbar,
   Skeleton,
   Alert
 } from "@mui/material";
 import { useQuery } from "react-query";
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import lyricsQuery from "../api/fetchLyrics";
 import "../App.css"
 import { useLyricStore } from "../store";
@@ -27,43 +24,48 @@ export default function DisplayLyrics() {
 
   console.log(title, artist);
 
-  return (
-    <>
-      {isLoading && (
-        <Skeleton variant="rectangular" width="100%" height={60} animation="wave" />
-      )}
-      {isError && (
-        <Snackbar open={isSnackbarOpen} autoHideDuration={5000} onClose={() => setIsSnackbarOpen(false)}>
-          <Alert onClose={() => setIsSnackbarOpen(false)} severity="error" sx={{ width: '100%' }}>
-            {String(error)}
-          </Alert>
-        </Snackbar>
-      )}
-      <div className="column">
-        <div className="lyricsBox">
-          <div className="displayClassLyricsBox">
-          <div className="column">
-            <img src={data?.data.cover_image} alt="album cover" className="albumCover" />
+  if (isLoading)
+    return (
+      <Skeleton variant="rectangular" width="100%" height={60} animation="wave" />
+    );
+
+  if (isError)
+    return (
+      <Snackbar open={isSnackbarOpen} autoHideDuration={5000} onClose={() => setIsSnackbarOpen(false)}>
+        <Alert onClose={() => setIsSnackbarOpen(false)} severity="error" sx={{ width: '100%' }}>
+          {String(error)}
+        </Alert>
+      </Snackbar>
+    );
+
+  if (data)
+    return (
+      <>
+        <div className="column">
+          <div className="lyricsBox">
+            <div className="displayClassLyricsBox">
+            <div className="column">
+              <img src={data?.data.cover_image} alt="album cover" className="albumCover" />
+            </div>
+            <div className="column">
+              <p className="lyricsTitle">
+                {title}
+              </p>
+              <p className="lyricsArtist">
+                {artist}
+              </p>
+            </div>
+            </div>
+            {data && data.data.lyrics.split('\n').map((line, index) => (
+              <p 
+                key={index}
+                className="lyricsLine"
+              >
+                {line}
+              </p>
+            ))}
           </div>
-          <div className="column">
-            <p className="lyricsTitle">
-              {title}
-            </p>
-            <p className="lyricsArtist">
-              {artist}
-            </p>
-          </div>
-          </div>
-          {data && data.data.lyrics.split('\n').map((line, index) => (
-            <p 
-              key={index}
-              className="lyricsLine"
-            >
-              {line}
-            </p>
-          ))}
         </div>
-      </div>
-    </>
-  )
+      </>
+    );
 }
