@@ -45,7 +45,7 @@ export default function DisplayLyrics() {
           <div className="lyricsBox">
             <div className="displayClassLyricsBox">
             <div className="column">
-              <img src={data?.data.cover_image} alt="album cover" className="albumCover" />
+              <img src={data?.data.image} alt="album cover" className="albumCover" />
             </div>
             <div className="column">
               <p className="lyricsTitle">
