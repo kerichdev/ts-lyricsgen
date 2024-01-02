@@ -14,6 +14,7 @@ export default function DisplayLyrics() {
 
   const { isLoading, data, isError, error } = useQuery(['lyrics', title, artist], () => lyricsQuery(title, artist), {
     enabled: true,
+    refetchOnWindowFocus: false,
   });
 
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
