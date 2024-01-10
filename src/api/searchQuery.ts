@@ -14,6 +14,6 @@ export default async function searchQuery(track: string) {
     ).then((res) => res.data);
     return response;
   } catch (error) {
-    console.error(error);
+    throw new Error(String(error));
   }
 }
