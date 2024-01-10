@@ -27,4 +27,4 @@ dist-ssr
 projectInfo.md
 
 # Secrets
-src/secrets.ts
+.env
