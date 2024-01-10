@@ -6,7 +6,14 @@ export default async function searchQuery(track: string) {
   if (!key || key === '') {
     throw new Error('Get a Last.fm API key, idiot');
   }
-  return await axios.get<Results>(
-    `https://ws.audioscrobbler.com/2.0/?method=track.search&track=${track}&api_key=${key}&format=json`
-  );
+
+  // lets do some nicer error handling
+  try {
+    const response = await axios.get<Results>(
+      `https://ws.audioscrobbler.com/2.0/?method=track.search&track=${track}&api_key=${key}&format=json`
+    ).then((res) => res.data);
+    return response;
+  } catch (error) {
+    console.error(error);
+  }
 }
