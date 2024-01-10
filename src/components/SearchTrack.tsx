@@ -79,7 +79,7 @@ export default function SearchTrack() {
       )}
       {data && (
         <List>
-          {data.data.results.trackmatches.track.map((track) => (
+          {data.results.trackmatches.track.map((track) => (
             <ListItem 
               key={`${track.name}-${track.artist}`}
               className="listItem"
