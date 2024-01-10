@@ -37,6 +37,11 @@ export default function SearchTrack() {
       setIsSnackbarOpen(true);
     }
   }, [errorBuffer, isSnackbarOpen]);
+
+  const handleSnackbarClose = () => {
+    setErrorBuffer(prevBuffer => prevBuffer.slice(1));
+    setIsSnackbarOpen(false);
+  }
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(event.target.value);
   };
@@ -65,10 +70,10 @@ export default function SearchTrack() {
           ))}
         </List>
       )}
-      {isError && (
-        <Snackbar open={isSnackbarOpen} autoHideDuration={5000} onClose={() => setIsSnackbarOpen(false)}>
-          <Alert onClose={() => setIsSnackbarOpen(false)} severity="error" sx={{ width: '100%' }}>
-            {String(error)}
+      {errorBuffer.length > 0 && (
+        <Snackbar open={isSnackbarOpen} autoHideDuration={5000} onClose={handleSnackbarClose}>
+          <Alert onClose={handleSnackbarClose} severity="error" sx={{ width: '100%' }}>
+            {errorBuffer[0]}
           </Alert>
         </Snackbar>
       )}
