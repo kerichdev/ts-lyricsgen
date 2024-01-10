@@ -16,6 +16,8 @@ import { useLyricStore } from "../store";
 
 export default function SearchTrack() {
   const [searchText, setSearchText] = useState("");
+  //also some nicer error handling
+  const [errorBuffer, setErrorBuffer] = useState<string[]>([]);
   const { isLoading, data, isError, error, refetch } = useQuery(['search', searchText], () => searchQuery(searchText), {
     enabled: false, // dont query automatically
   });  
@@ -25,9 +27,16 @@ export default function SearchTrack() {
   const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
 
   useEffect(() => {
-      setIsSnackbarOpen(isError);
-  }, [isError]);
-
+    if (isError) {
+      setErrorBuffer(prevBuffer => [...prevBuffer, String(error)]);
+    }
+  }, [isError, error]);
+  
+  useEffect(() => {
+    if (errorBuffer.length > 0 && !isSnackbarOpen) {
+      setIsSnackbarOpen(true);
+    }
+  }, [errorBuffer, isSnackbarOpen]);
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(event.target.value);
   };
