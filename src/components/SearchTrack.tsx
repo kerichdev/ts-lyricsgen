@@ -53,6 +53,9 @@ export default function SearchTrack() {
         label="Enter your search query"
         value={searchText}
         onChange={handleSearchChange}
+        variant="outlined"
+        fullWidth
+        margin="normal"
       />
 
       {searchText.length >= 2 && (
