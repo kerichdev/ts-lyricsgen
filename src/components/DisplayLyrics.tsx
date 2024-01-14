@@ -37,11 +37,18 @@ export default function DisplayLyrics() {
     const { lyrics, title, artist }: Lyrics = data.data;
     return (
       <div className="column" id="lyrics">
-          <h2> {title} </h2>
-          <h3> {artist} </h3>
+        <div className="lyricsCard">
+        <img src={data?.data.image} />
+          <div className="lyricsNames">
+            <h2> {title} </h2>
+            <h3> {artist} </h3>
+          </div>
+        </div>
+        <div className="lyricsScrollable">
         {lyrics.split('\n').map((line, index) =>
           <p key={index}> {line} </p>
         )}
+        </div>
       </div>
       );
     }

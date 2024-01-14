@@ -61,12 +61,12 @@ body {
   justify-content: flex-start;
   max-height: 50vh;
   max-width: 25em;
-  overflow-y: auto;
+  
   margin: 15px 15px;
   border-radius: 5px;
   padding: 25px;
-  background-color: #d53b3b;
-  color: white;
+  background-color: #5779fb;
+  color: black;
   line-height: 0.1;
 }
 
@@ -92,16 +92,25 @@ body {
   margin: 0px 0px 20px 0px;
 }
 
-.lyricsImage{
-  width: 10vw;
-  height: 100px;
-  background-color: #c4c4;
-  float: left;
+#lyrics img {
+  max-width: 50px;
+  max-height: 50px;
+  border-radius: 10px
 }
 
-.lyricsName {
-  width: 10vw;
-  height: 100px;
-  background-color: blueviolet;
-  float: right;
+.lyricsCard {
+  display: flex;
+  flex-direction: row;
+  padding: 0px 0px 25px 0px;
+}
+
+.lyricsNames {
+  display: flex; 
+  flex-direction: column;
+  padding: 0px 0px 0px 20px;
+  margin: 5px 0px 0px 0px;
+}
+
+.lyricsScrollable {
+  overflow-y: scroll;
 }
