@@ -19,70 +19,89 @@
   src: local("Circular Std"), url(./fonts/CircularStd-Medium.otf) format("opentype");
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  padding: 0;
+  box-sizing: border-box;
   min-height: 100vh;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+#root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-.displayClass, .displayClassLyricsBox {
+.displayClass {
   display: flex;
   flex-direction: row;
-  align-items: start;
+  align-items: flex-start;
+  justify-content: center;
+  min-width: 50%;
 }
 
 .column {
+  width: clamp(300px, 50%, 500px);
   display: flex;
   flex-direction: column;
-  flex: 1;
+  align-items: center;
+  justify-content: center;
 }
 
-.lyricsBox {
-  text-align: start;
-  background-color: red;
-  border-radius: 20px;
-  border: 40px red solid;
+.column ul {
+  width: 100%;
 }
 
-.lyricsTitle, .lyricsArtist {
-  text-align: start;
+#lyrics {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-height: 50vh;
+  max-width: 25em;
+  overflow-y: auto;
+  margin: 15px 15px;
+  border-radius: 5px;
+  padding: 25px;
+  background-color: #d53b3b;
+  color: white;
+  line-height: 0.1;
 }
 
-.albumCover {
-  width: 50px;
+#lyrics h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  padding: 0px 0px 5px 0px;
+  line-height: 1;
 }
 
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+#lyrics h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  padding: 0px 0px 10px 0px;
+  line-height: 1;
 }
 
-.listItem:hover {
-  background-color: #f5f5f5;
+#lyrics p {
+  font-size: 1.5rem;
+  line-height: 1.6rem;
+  margin: 0px 0px 20px 0px;
+}
+
+.lyricsImage{
+  width: 10vw;
+  height: 100px;
+  background-color: #c4c4;
+  float: left;
+}
+
+.lyricsName {
+  width: 10vw;
+  height: 100px;
+  background-color: blueviolet;
+  float: right;
 }
