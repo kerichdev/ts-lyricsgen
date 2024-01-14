@@ -1,5 +1,5 @@
 :root {
-  font-family: Circular Std;
+  font-family: Circular Std Bold;
   line-height: 1.5;
   font-weight: 400;
 
@@ -17,6 +17,11 @@
 @font-face {
   font-family: "Circular Std";
   src: local("Circular Std"), url(./fonts/CircularStd-Medium.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "Circular Std Bold";
+  src: local("Circular Std Bold"), url(./fonts/CircularStd-Bold.otf) format("opentype");
 }
 
 body {
