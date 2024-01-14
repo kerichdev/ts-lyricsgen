@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, TextField, List, ListItem, ListItemText, Alert, Snackbar, Skeleton } from "@mui/material";
+import { Button, TextField, List, ListItem, ListItemText, Alert, Snackbar, Skeleton, CircularProgress } from "@mui/material";
 import { useQuery } from "react-query";
 import searchQuery from "../api/searchQuery";
 import { useLyricStore } from "../store";
@@ -42,6 +42,11 @@ export default function SearchTrack() {
     }
   };
 
+  const handleListItemClick = (track: { name: string; artist: string; }) => {
+    setTitle(track.name);
+    setArtist(track.artist);
+  }
+
   return (
     <div className="column">
       <TextField
@@ -49,8 +54,14 @@ export default function SearchTrack() {
         value={searchText}
         onChange={handleSearchChange}
       />
-      <Button onClick={handleSearch}>Search</Button>
-      {isLoading && (
+
+      {searchText.length >= 2 && (
+        <Button onClick={handleSearch} disabled={isLoading}>
+          {isLoading ? <CircularProgress size={24} /> : "Search"}
+        </Button>
+      )}
+        
+      {isLoading && searchText.length >= 2 && (
         <List>
           {Array.from({ length: 5 }).map((_, index) => (
             <ListItem key={index}>
@@ -68,24 +79,21 @@ export default function SearchTrack() {
       )}
       {data && (
         <List>
-          {data.results.trackmatches.track.map((track) => (
+          {/* limit to 5 results to prevent overflow */}
+          {data.results.trackmatches.track.slice(0, 5).map((track) => (
             <ListItem 
               key={`${track.name}-${track.artist}`}
               className="listItem"
-              onClick={() => {
-                setTitle(track.name);
-                setArtist(track.artist);
-                } 
-              }
+              onClick={() => handleListItemClick(track)}
             >
               <ListItemText
                 primary={track.name}
-                secondary={`Artist: ${track.artist}`}
+                secondary={track.artist}
               />
             </ListItem>
           ))}
         </List>
       )}
     </div>
-  )
+  );
 }
