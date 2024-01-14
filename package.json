@@ -17,6 +17,7 @@
     "@mui/material": "^5.14.17",
     "axios": "^1.6.2",
     "dotenv": "^16.3.1",
+    "palette-from-image": "^1.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-query": "^3.39.3",
