@@ -1,30 +1,19 @@
-import {
-  Button,
-  TextField,
-  List,
-  ListItem,
-  ListItemText,
-  Alert,
-  Snackbar,
-  Skeleton
-} from "@mui/material";
-import { useQuery } from "react-query";
 import React, { useState, useEffect } from 'react';
+import { Button, TextField, List, ListItem, ListItemText, Alert, Snackbar, Skeleton } from "@mui/material";
+import { useQuery } from "react-query";
 import searchQuery from "../api/searchQuery";
-import "../App.css";
 import { useLyricStore } from "../store";
 
 export default function SearchTrack() {
   const [searchText, setSearchText] = useState("");
   //also some nicer error handling
   const [errorBuffer, setErrorBuffer] = useState<string[]>([]);
-  const { isLoading, data, isError, error, refetch } = useQuery(['search', searchText], () => searchQuery(searchText), {
-    enabled: false, // dont query automatically
-  });  
-
+  const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
   const { setTitle, setArtist } = useLyricStore((state) => state);
 
-  const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
+  const { isLoading, data, isError, error, refetch } = useQuery(['search', searchText], () => searchQuery(searchText), {
+    enabled: false, // dont query automatically
+  });
 
   useEffect(() => {
     if (isError) {
