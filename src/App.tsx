@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import React, { useState, useEffect } from 'react';
 import SearchTrack from "./components/SearchTrack";
-import './App.css'
+import './index.css'
 import DisplayLyrics from "./components/DisplayLyrics";
 
 function App() {
