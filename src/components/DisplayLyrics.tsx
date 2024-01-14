@@ -34,11 +34,13 @@ export default function DisplayLyrics() {
     );
   } else {
   if (data) {
+    const imgLink = data?.data.image;
+
     const { lyrics, title, artist }: Lyrics = data.data;
     return (
       <div className="column" id="lyrics">
         <div className="lyricsCard">
-        <img src={data?.data.image} />
+        <img src={imgLink} />
           <div className="lyricsNames">
             <h2> {title} </h2>
             <h3> {artist} </h3>
