@@ -1,8 +1,8 @@
 // import { useQuery } from "react-query";
 // import React, { useState, useEffect } from 'react';
 import SearchTrack from "./components/SearchTrack";
-import './index.css'
 import DisplayLyrics from "./components/DisplayLyrics";
+import './index.css'
 
 function App() {
   return (
