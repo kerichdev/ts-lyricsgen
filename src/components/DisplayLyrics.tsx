@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import lyricsQuery from "../api/fetchLyrics";
 import { useLyricStore } from "../store";
 import { Lyrics } from "../api/lyrist.interface";
+import ColoredCard from "./ColoredCard"
 
 export default function DisplayLyrics() {
   const { title: currentTitle, artist: currentArtist } = useLyricStore((state) => state);
@@ -35,23 +36,9 @@ export default function DisplayLyrics() {
   } else {
   if (data) {
     const imgLink = data?.data.image;
-
     const { lyrics, title, artist }: Lyrics = data.data;
     return (
-      <div className="column" id="lyrics">
-        <div className="lyricsCard">
-        <img src={imgLink} />
-          <div className="lyricsNames">
-            <h2> {title} </h2>
-            <h3> {artist} </h3>
-          </div>
-        </div>
-        <div className="lyricsScrollable">
-        {lyrics.split('\n').map((line, index) =>
-          <p key={index}> {line} </p>
-        )}
-        </div>
-      </div>
+      <ColoredCard title={title} artist={artist} imgLink={imgLink} lyrics={lyrics} />
       );
     }
   }
