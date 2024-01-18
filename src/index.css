@@ -125,16 +125,15 @@ body {
   display: none;
 }
 
-.lyricsScrollable::before {
-  position: sticky;
+.lyricsScrollable::after {
+  position: absolute;
   content: '';
   top: 0;
   right: 0;
   left: 0;
   height: 1rem;
-  background-color: red;
+  box-shadow: inset 10rem 10rem gold;
 }
- 
 
 .copyrightDiv {
   display: flex;
