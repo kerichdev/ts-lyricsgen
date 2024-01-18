@@ -56,7 +56,7 @@ const ColoredCard = (props: Props) => {
           ))}
         </div>
         <div className="copyrightDiv">
-          <img className="copyrightedLogo" src="./public/spotify_logo.png" />
+          <img className="copyrightedLogo" src="./spotify_logo.png" />
         </div>
       </div>
     );
