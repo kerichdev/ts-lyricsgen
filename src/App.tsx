@@ -1,5 +1,3 @@
-// import { useQuery } from "react-query";
-// import React, { useState, useEffect } from 'react';
 import SearchTrack from "./components/SearchTrack";
 import DisplayLyrics from "./components/DisplayLyrics";
 import './index.css'
