@@ -1,23 +1,31 @@
 import { useColor } from "color-thief-react";
-import { Backdrop, CircularProgress } from "@mui/material";
-import { CSSProperties, useRef } from "react";
-import exportAsImage from "../utils/exportAsImage";
+import { Backdrop, CircularProgress, IconButton } from "@mui/material";
+import { Done, Deselect } from "@mui/icons-material";
+import { CSSProperties } from "react";
+import { useLyricsCardStore } from "../store";
 
 interface Props {
   title: string;
   artist: string;
   imgLink: string;
   lyrics: string;
+  handleOpen: () => void
 }
 
 interface CardStyles extends CSSProperties {
   "--bg": string;
 }
 
-const ColoredCard = (props: Props) => {
-  const { title, artist, imgLink, lyrics } = props;
+interface SelectedString {
+  line: string;
+  id: number;
+}
 
-  const exportRef = useRef<HTMLDivElement | null>(null);
+const ColoredCard = (props: Props) => {
+  let selectedLyrics: SelectedString[] = [];
+  const setCardSettings = useLyricsCardStore((state) => state.setCardSettings);
+
+  const { title, artist, imgLink, lyrics, handleOpen } = props;
 
   const googleProxyURL =
     "https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&refresh=2592000&url=";
@@ -29,6 +37,38 @@ const ColoredCard = (props: Props) => {
     "hslArray",
     { crossOrigin: "anonymous" }
   );
+
+  const toggleSelect = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (selectedLyrics.some((lyric) => lyric.id === Number(e.currentTarget.id))) {
+      selectedLyrics = selectedLyrics.filter((lyric) => lyric.id !== Number(e.currentTarget.id));
+      e.currentTarget.classList.remove("selectedLine");
+    }
+
+    else{
+      selectedLyrics.push({ line: e.currentTarget.innerHTML, id: Number(e.currentTarget.id) });
+      e.currentTarget.classList.add("selectedLine");
+    }
+  }
+
+  const deselectAll = () => {
+    selectedLyrics = [];
+    document.querySelectorAll(".selectedLine").forEach((line) => line.classList.remove("selectedLine"));
+  }
+
+  const confirmSelection = () => {
+    setCardSettings({ 
+      title: title, 
+      artist: artist, 
+      imgLink: finalImageURL, 
+      lyrics: selectedLyrics.sort(el => el.id),
+      bgColor: `hsl(${data![0]}, ${data![1]}%, 
+        ${parseInt(data![2]) < 40 ? 40 :
+          parseInt(data![2]) > 80 ? 80 : data![2]}%)`
+     });
+    deselectAll();
+    handleOpen();
+  }
 
   if (loading) {
     return (
@@ -51,7 +91,6 @@ const ColoredCard = (props: Props) => {
           "--bg": `hsl(${data[0]}, ${data[1]}%, 
             ${parseInt(data[2]) < 40 ? 40 :
               parseInt(data[2]) > 80 ? 80 : data[2]}%)`,} as CardStyles }
-        ref={exportRef}
       >
         <div className="lyricsCard">
           <img className="albumCover" src={finalImageURL} />
@@ -62,11 +101,19 @@ const ColoredCard = (props: Props) => {
         </div>
         <div className="lyricsScrollable">
           {lyrics && lyrics.split("\n").map((line, index) => (
-            <p key={index} onClick={() => exportAsImage(exportRef!.current, "test")}> {line} </p>
+            <p key={index} onClick={toggleSelect} id={index.toString()}> {line} </p>
           ))}
         </div>
         <div className="copyrightDiv">
           <img className="copyrightedLogo" src="./spotify_logo.png" />
+        </div>
+        <div className="buttonsRow">
+          <IconButton aria-label="deselect all" onClick={deselectAll}>
+            <Deselect />
+          </IconButton>
+          <IconButton aria-label="confirm selection" onClick={confirmSelection}>
+            <Done />
+          </IconButton>
         </div>
       </div>
     );
