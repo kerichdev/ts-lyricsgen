@@ -160,7 +160,7 @@ body {
 }
 
 .copyrightedLogo {
-  height: calc(1.5rem * var(--font-size-multiplier));
+  height: calc(1.6rem * var(--font-size-multiplier));
 }
 
 .errorCard {
