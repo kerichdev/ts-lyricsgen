@@ -6,7 +6,11 @@ import { useLyricStore } from "../store";
 import { Lyrics } from "../api/lyrist.interface";
 import ColoredCard from "./ColoredCard"
 
-export default function DisplayLyrics() {
+interface Props {
+  handleOpen: () => void
+}
+
+export default function DisplayLyrics(props: Props) {
   const { title: currentTitle, artist: currentArtist } = useLyricStore((state) => state);
   const { isLoading, data, isError, error } = useQuery(['lyrics', currentTitle, currentArtist], () => lyricsQuery(currentTitle, currentArtist), {
     enabled: true,
@@ -38,7 +42,7 @@ export default function DisplayLyrics() {
     const imgLink = data?.data.image;
     const { lyrics, title, artist }: Lyrics = data.data;
     return (
-      <ColoredCard title={title} artist={artist} imgLink={imgLink} lyrics={lyrics} />
+      <ColoredCard title={title} artist={artist} imgLink={imgLink} lyrics={lyrics} handleOpen={props.handleOpen} />
       );
     }
   }
