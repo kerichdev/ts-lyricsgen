@@ -60,6 +60,8 @@ body {
 }
 
 #lyrics {
+  --bg: #5779fb;
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -69,9 +71,28 @@ body {
   margin: 15px 15px;
   border-radius: 5px;
   padding: 25px;
-  background-color: #5779fb;
+  background-color: var(--bg);
   color: black;
   line-height: 0.1;
+  position: relative;
+}
+
+#lyrics::after,
+#lyrics::before {
+  content: "";
+  position: absolute;
+  background: linear-gradient(to bottom, var(--bg), transparent);
+  height: 1rem;
+  z-index: 10;
+}
+
+#lyrics::before {
+  inset: 6.3rem 0 auto 0;
+}
+
+#lyrics::after {
+  inset: auto 0 4rem 0;
+  transform: rotate(180deg);
 }
 
 #lyrics h2 {
@@ -125,22 +146,21 @@ body {
   display: none;
 }
 
-.lyricsScrollable::after {
-  position: absolute;
-  content: '';
-  top: 0;
-  right: 0;
-  left: 0;
-  height: 1rem;
-  box-shadow: inset 10rem 10rem gold;
-}
-
 .copyrightDiv {
   display: flex;
   margin: 20px 0px 00px 00px;
 }
 
 .copyrightedLogo {
-  filter: invert(100%);
   height: 25px !important;
+}
+
+.errorCard {
+  background-color: hdl(0, 100%, 90%);
+  margin: 0 0 0 1rem;
+  border-radius: 1rem;
+  width: 15rem;
+  height: 25rem;
+  padding: 1rem;
+  color: hsl(0, 100%, 30%);
 }
