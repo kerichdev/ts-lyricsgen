@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: #000;
-  background-color: #fff;
+  background-color:#fff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -59,22 +59,29 @@ body {
   width: 100%;
 }
 
-#lyrics {
+.lyrics, #lyrics {
   --bg: #5779fb;
+  --font-size-multiplier: 1;
 
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  max-height: 50vh;
-  max-width: 25em;
+  width: calc(25rem * var(--font-size-multiplier));
+  font-size: 1rem;
   margin: 15px 15px;
-  border-radius: 5px;
-  padding: 25px;
+  padding: calc(1.5rem * var(--font-size-multiplier));
   background-color: var(--bg);
   color: black;
-  line-height: 0.1;
   position: relative;
+}
+
+#lyrics {
+  border-radius: 5px !important;
+  max-height: 50vh !important;
+  width: 25em !important;
+  margin: 15px 15px !important;
+  padding: 25px !important;
 }
 
 #lyrics::after,
@@ -87,7 +94,7 @@ body {
 }
 
 #lyrics::before {
-  inset: 6.3rem 0 auto 0;
+  inset: 6.2rem 0 auto 0;
 }
 
 #lyrics::after {
@@ -95,46 +102,47 @@ body {
   transform: rotate(180deg);
 }
 
-#lyrics h2 {
-  font-size: 1rem;
+.lyrics h2, #lyrics h2 {
+  font-size: calc(1rem * var(--font-size-multiplier));
   font-weight: 600;
   margin: 0;
-  padding: 0px 0px 5px 0px;
+  padding: 0px 0px calc(0.3rem * var(--font-size-multiplier)) 0px;
   line-height: 1;
 }
 
-#lyrics h3 {
-  font-size: 1rem;
+.lyrics h3, #lyrics h3 {
+  font-size: calc(1rem * var(--font-size-multiplier));
   font-weight: 600;
   margin: 0;
-  padding: 0px 0px 10px 0px;
+  padding: 0px 0px calc(0.6rem * var(--font-size-multiplier)) 0px;
   line-height: 1;
   opacity: 0.6;
 }
 
-#lyrics p {
-  font-size: 1.5rem;
-  line-height: 1.6rem;
-  margin: 0px 0px 20px 0px;
+.lyrics p, #lyrics p {
+  font-size: calc(1.5rem * var(--font-size-multiplier));
+  line-height: calc(1.6rem * var(--font-size-multiplier));
+  margin: 0px 0px calc(1.2rem * var(--font-size-multiplier)) 0px;
 }
 
 .albumCover {
-  max-width: 50px;
-  max-height: 50px;
-  border-radius: 10px
+  max-width: calc(3.1rem * var(--font-size-multiplier));
+  max-height: calc(3.1rem * var(--font-size-multiplier));
+  border-radius: calc(0.6rem * var(--font-size-multiplier));
 }
 
 .lyricsCard {
   display: flex;
   flex-direction: row;
-  padding: 0px 0px 25px 0px;
+  padding: 0px 0px calc(1.5rem * var(--font-size-multiplier)) 0px;
+  align-items: center;
 }
 
 .lyricsNames {
   display: flex; 
   flex-direction: column;
-  padding: 0px 0px 0px 20px;
-  margin: 5px 0px 0px 0px;
+  padding: 0px 0px 0px calc(1.35rem * var(--font-size-multiplier));
+  margin: calc(0.3rem * var(--font-size-multiplier)) 0px 0px 0px;
 }
 
 .lyricsScrollable {
@@ -148,11 +156,11 @@ body {
 
 .copyrightDiv {
   display: flex;
-  margin: 20px 0px 00px 00px;
+  margin: calc(1.3rem * var(--font-size-multiplier)) 0px 0px 0px;
 }
 
 .copyrightedLogo {
-  height: 25px !important;
+  height: calc(1.5rem * var(--font-size-multiplier));
 }
 
 .errorCard {
@@ -163,4 +171,14 @@ body {
   height: 25rem;
   padding: 1rem;
   color: hsl(0, 100%, 30%);
+}
+
+.selectedLine {
+  color: white;
+}
+
+.buttonsRow {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
 }
