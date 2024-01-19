@@ -1,6 +1,19 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 
+interface SelectedString {
+  line: string;
+  id: number;
+}
+
+interface CardSettings {
+  title: string;
+  artist: string;
+  imgLink: string;
+  lyrics: SelectedString[];
+  bgColor: string;
+}
+
 interface LyricStore {
   title: string;
   artist: string;
@@ -13,6 +26,13 @@ interface LyricStore {
   ) => void;
 }
 
+interface LyricsCardStore {
+  cardSettings: CardSettings;
+  setCardSettings: (
+    cardSettings: CardSettings,
+  ) => void;
+}
+
 export const useLyricStore = create<LyricStore>()(
   devtools(
     (set) => ({
@@ -22,4 +42,17 @@ export const useLyricStore = create<LyricStore>()(
       setArtist: (artist: string) => set({ artist }),
     })
   )
+)
+
+export const useLyricsCardStore = create<LyricsCardStore>()(
+  (set) => ({
+    cardSettings: {
+      title: "",
+      artist: "",
+      imgLink: "",
+      lyrics: [],
+      bgColor: "",
+    },
+    setCardSettings: (cardSettings: CardSettings) => set({ cardSettings }),
+  })
 )
