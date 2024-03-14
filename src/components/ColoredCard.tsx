@@ -35,7 +35,7 @@ const ColoredCard = (props: Props) => {
   const { data, loading, error } = useColor(
     finalImageURL,
     "hslArray",
-    { crossOrigin: "anonymous" }
+    { crossOrigin: "https://kerichdev.github.io/ts-lyricsgen/" }
   );
 
   const toggleSelect = (e: React.MouseEvent) => {
