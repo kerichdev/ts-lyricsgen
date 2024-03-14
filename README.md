@@ -9,3 +9,6 @@ Whichever Lyrist can find lyrics for, and whichever are in LastFM's catalogue. A
 
 ### How to use it?
 Visit [https://kerichdev.github.io/ts-lyricsgen/](here) and find your song, choose the lines you wish, and click export.
+
+# project currently dead
+goog image proxy died
