@@ -30,7 +30,7 @@ const ColoredCard = (props: Props) => {
   const googleProxyURL =
     "https://cors.kerichuu.space/";
 
-  const finalImageURL = googleProxyURL + encodeURIComponent(imgLink);
+  const finalImageURL = googleProxyURL + imgLink;
 
   const { data, loading, error } = useColor(
     finalImageURL,
