@@ -28,7 +28,7 @@ const ColoredCard = (props: Props) => {
   const { title, artist, imgLink, lyrics, handleOpen } = props;
 
   const googleProxyURL =
-    "https://images1-focus-opensocial.googleusercontent.com/gadgets/proxy?container=focus&refresh=2592000&url=";
+    "http://cors.kerichuu.space/";
 
   const finalImageURL = googleProxyURL + encodeURIComponent(imgLink);
 
